@@ -27,34 +27,58 @@
                             <div class="item">
                                 <label for="first_name">First Name<span>*</span></label>
                                 <input id="first_name" type="text" name="first_name" required />
+                                @error('first_name')
+                                    <div class="text-red-300">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="item">
                                 <label for="last_name"> Last Name<span>*</span></label>
                                 <input id="last_name" type="text" name="last_name" required />
+                                @error('last_name')
+                                    <div class="text-red-300">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="item">
                                 <label for="address">Address<span>*</span></label>
                                 <input id="address" type="text" name="address" required />
+                                @error('address')
+                                    <div class="text-red-300">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="item">
                                 <label for="zip_code">Zip Code<span>*</span></label>
                                 <input id="zip_code" type="text" name="zip_code" required />
+                                @error('zip_code')
+                                    <div class="text-red-300">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="item">
                                 <label for="city">City<span>*</span></label>
                                 <input id="city" type="text" name="city" required />
+                                @error('city')
+                                    <div class="text-red-300">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="item">
                                 <label for="state">State<span>*</span></label>
                                 <input id="state" type="text" name="state" required />
+                                @error('state')
+                                    <div class="text-red-300">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="item">
                                 <label for="email">Email Address<span>*</span></label>
                                 <input id="email" type="text" name="email" required />
+                                @error('email')
+                                    <div class="text-red-300">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="item">
                                 <label for="phone">Phone<span>*</span></label>
                                 <input id="phone" type="tel" name="phone" required />
+                                @error('phone')
+                                    <div class="text-red-300">{{ $message }}</div>
+                                @enderror
                             </div>
                     </fieldset>
                     <br />
@@ -65,11 +89,17 @@
                                 <label for="checkin_date">Check-in Date <span>*</span></label>
                                 <input id="checkin_date" type="date" name="checkin_date" required />
                                 <i class="fas fa-calendar-alt"></i>
+                                @error('checkin_date')
+                                    <div class="text-red-300">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="item">
                                 <label for="checkout_date">Check-out Date <span>*</span></label>
                                 <input id="checkout_date" type="date" name="checkout_date" required />
                                 <i class="fas fa-calendar-alt"></i>
+                                @error('checkout_date')
+                                    <div class="text-red-300">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="item">
                                 <p>Check-in Time </p>
@@ -79,6 +109,9 @@
                                     <option value="Afternoon">Afternoon</option>
                                     <option value="Evening">Evening</option>
                                 </select>
+                                @error('checkin_time')
+                                    <div class="text-red-300">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="item">
                                 <p>Check-out Time </p>
@@ -88,22 +121,28 @@
                                     <option value="Afternoon">Afternoon</option>
                                     <option value="Evening">Evening</option>
                                 </select>
+                                @error('checkout_time')
+                                    <div class="text-red-300">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="item">
                                 <p>How many adults are coming?</p>
                                 <select name="numberof_adults" required>
-                                    <option value="0" disabled selected>Number of adults</option>
+                                    <option disabled selected>Number of adults</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                 </select>
+                                @error('numberof_adults')
+                                    <div class="text-red-300">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="item">
                                 <p>How many children are coming?</p>
                                 <select name="numberof_children" required>
-                                    <option value="0" disabled selected>Number of children</option>
+                                    <option disabled selected>Number of children</option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -111,10 +150,16 @@
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                 </select>
+                                @error('numberof_children')
+                                    <div class="text-red-300">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="item" style=width:100%>
                                 <label for="numberof_rooms">Number of rooms</label>
                                 <input id="numberof_rooms" type="number" name="numberof_rooms" required />
+                                @error('numberof_rooms')
+                                    <div class="text-red-300">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="item">
                                 <p>Room 1 type</p>
@@ -124,6 +169,9 @@
                                     <option value="deluxe">Deluxe</option>
                                     <option value="suite">Suite</option>
                                 </select>
+                                @error('room_1_type')
+                                    <div class="text-red-300">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="item">
                                 <p>Room 2 type</p>
@@ -133,11 +181,17 @@
                                     <option value="deluxe">Deluxe</option>
                                     <option value="suite">Suite</option>
                                 </select>
+                                @error('room_2_type')
+                                    <div class="text-red-300">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="item">
                             <label for="special_instructions">Special Instructions</label>
                             <textarea id="special_instructions" name="special_instructions" rows="3" required></textarea>
+                            @error('special_instructions')
+                                <div class="text-red-300">{{ $message }}</div>
+                            @enderror
                         </div>
                     </fieldset>
                     <div class="btn-block">

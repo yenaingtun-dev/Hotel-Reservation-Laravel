@@ -155,6 +155,7 @@
                                     $room_types = ['standard', 'deluxe', 'suite'];
                                 @endphp
                                 <select name="room_1_type">
+                                    <option value="{{ $reservation->room_1_type }}" selected>{{ $reservation->room_1_type }}</option>
                                     @foreach ($room_types as $room)
                                         <option value="{{ $room }}"
                                             {{ $reservation->room_1_type == $room ? 'selected' : '' }}>
@@ -165,6 +166,7 @@
                             <div class="item">
                                 <p>Room 2 type</p>
                                 <select name="room_2_type">
+                                    <option value="{{ $reservation->room_2_type }}" selected>{{ $reservation->room_2_type }}</option>
                                     @foreach ($room_types as $room)
                                         <option value="{{ $room }}"
                                             {{ $reservation->room_2_type == $room ? 'selected' : '' }}>

@@ -63,6 +63,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{ $reservations->links() }}
                     </div>
                 </div>
             </div>

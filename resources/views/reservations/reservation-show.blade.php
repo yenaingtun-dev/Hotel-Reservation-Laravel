@@ -1,22 +1,8 @@
 <x-app-layout>
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            @if (session()->has('message'))
-                <div
-                    class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-green-200 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple">
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z">
-                            </path>
-                        </svg>
-                        <span>{{ session('message') }}herer</span>
-                    </div>
-                </div>
-            @endif
             <div class="testbox">
-                <form class="reservation_form" method="POST" action="{{ route('reservation.store') }}">
-                    @csrf
+                <form class="reservation_form">
                     <div class="banner">
                         <h1>Hotel Reservation Form</h1>
                     </div>
@@ -26,35 +12,35 @@
                         <div class="columns">
                             <div class="item">
                                 <label for="first_name">First Name<span>*</span></label>
-                                <input id="first_name" type="text" name="first_name" required />
+                                <input id="first_name" type="text" name="first_name" value="{{ $reservation->first_name }}" disabled />
                             </div>
                             <div class="item">
                                 <label for="last_name"> Last Name<span>*</span></label>
-                                <input id="last_name" type="text" name="last_name" required />
+                                <input id="last_name" type="text" name="last_name" value="{{ $reservation->last_name }}" disabled/>
                             </div>
                             <div class="item">
                                 <label for="address">Address<span>*</span></label>
-                                <input id="address" type="text" name="address" required />
+                                <input id="address" type="text" name="address" value="{{ $reservation->address }}" disabled/>
                             </div>
                             <div class="item">
                                 <label for="zip_code">Zip Code<span>*</span></label>
-                                <input id="zip_code" type="text" name="zip_code" required />
+                                <input id="zip_code" type="text" name="zip_code" value="{{ $reservation->zip_code }}" disabled/>
                             </div>
                             <div class="item">
                                 <label for="city">City<span>*</span></label>
-                                <input id="city" type="text" name="city" required />
+                                <input id="city" type="text" name="city" value="{{ $reservation->city }}" disabled/>
                             </div>
                             <div class="item">
                                 <label for="state">State<span>*</span></label>
-                                <input id="state" type="text" name="state" required />
+                                <input id="state" type="text" name="state" value="{{ $reservation->state }}" disabled/>
                             </div>
                             <div class="item">
                                 <label for="email">Email Address<span>*</span></label>
-                                <input id="email" type="text" name="email" required />
+                                <input id="email" type="text" name="email" value="{{ $reservation->email }}" disabled/>
                             </div>
                             <div class="item">
                                 <label for="phone">Phone<span>*</span></label>
-                                <input id="phone" type="tel" name="phone" required />
+                                <input id="phone" type="tel" name="phone" value="{{ $reservation->phone }}" disabled/>
                             </div>
                     </fieldset>
                     <br />
@@ -63,18 +49,22 @@
                         <div class="columns">
                             <div class="item">
                                 <label for="checkin_date">Check-in Date <span>*</span></label>
-                                <input id="checkin_date" type="date" name="checkin_date" required />
+                                <input id="checkin_date" type="date" name="checkin_date" value="{{ $reservation->checkin_date }}" disabled/>
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                             <div class="item">
                                 <label for="checkout_date">Check-out Date <span>*</span></label>
-                                <input id="checkout_date" type="date" name="checkout_date" required />
+                                <input id="checkout_date" type="date" name="checkout_date" value="{{ $reservation->checkout_date }}" disabled/>
                                 <i class="fas fa-calendar-alt"></i>
                             </div>
                             <div class="item">
                                 <p>Check-in Time </p>
-                                <select name="checkin_time" required>
-                                    <option value="" disabled selected>Select time</option>
+                                <select name="checkin_time" disabled>
+                                    @if ($reservation->checkin_time)
+                                        <option value="{{ $reservation->checkin_time }}" selected>{{ $reservation->checkin_time }}</option>
+                                    @else
+                                        <option value="" disabled selected>Select time</option>
+                                    @endif
                                     <option value="Morning">Morning</option>
                                     <option value="Afternoon">Afternoon</option>
                                     <option value="Evening">Evening</option>
@@ -82,8 +72,12 @@
                             </div>
                             <div class="item">
                                 <p>Check-out Time </p>
-                                <select name="checkout_time" required>
-                                    <option value="" disabled selected>Select time</option>
+                                <select name="checkout_time" disabled>
+                                    @if ($reservation->checkout_time)
+                                        <option value="{{ $reservation->checkout_time }}" selected>{{ $reservation->checkout_time }}</option>
+                                    @else
+                                        <option value="0" selected>Select Time</option>
+                                    @endif
                                     <option value="Morning">Morning</option>
                                     <option value="Afternoon">Afternoon</option>
                                     <option value="Evening">Evening</option>
@@ -91,8 +85,12 @@
                             </div>
                             <div class="item">
                                 <p>How many adults are coming?</p>
-                                <select name="numberof_adults" required>
-                                    <option value="0" disabled selected>Number of adults</option>
+                                <select name="numberof_adults" disabled>
+                                    @if ($reservation->numberof_adults)
+                                        <option value="{{ $reservation->numberof_adults }}" selected>{{ $reservation->numberof_adults }}</option>
+                                    @else
+                                        <option value="0" selected>Number of adults</option>
+                                    @endif
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -102,8 +100,12 @@
                             </div>
                             <div class="item">
                                 <p>How many children are coming?</p>
-                                <select name="numberof_children" required>
-                                    <option value="0" disabled selected>Number of children</option>
+                                <select name="numberof_children" disabled>
+                                    @if ($reservation->numberof_children)
+                                        <option value="{{ $reservation->numberof_children }}" selected>{{ $reservation->numberof_children }}</option>
+                                    @else
+                                        <option value="0" selected>Number of children</option>
+                                    @endif
                                     <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -114,12 +116,16 @@
                             </div>
                             <div class="item" style=width:100%>
                                 <label for="numberof_rooms">Number of rooms</label>
-                                <input id="numberof_rooms" type="number" name="numberof_rooms" required />
+                                <input id="numberof_rooms" type="number" name="numberof_rooms"  value="{{ $reservation->numberof_rooms }}" disabled/>
                             </div>
                             <div class="item">
                                 <p>Room 1 type</p>
-                                <select name="room_1_type" required>
-                                    <option value="0" selected></option>
+                                <select name="room_1_type" disabled>
+                                    @if ($reservation->room_1_type)
+                                        <option value="{{ $reservation->room_1_type }}" selected>{{ $reservation->room_1_type }}</option>
+                                    @else
+                                        <option value="0" selected></option>
+                                    @endif
                                     <option value="standard">Standard</option>
                                     <option value="deluxe">Deluxe</option>
                                     <option value="suite">Suite</option>
@@ -127,8 +133,12 @@
                             </div>
                             <div class="item">
                                 <p>Room 2 type</p>
-                                <select name="room_2_type" required>
-                                    <option value="0" selected></option>
+                                <select name="room_2_type" disabled>
+                                    @if ($reservation->room_2_type)
+                                        <option value="{{ $reservation->room_2_type }}" selected>{{ $reservation->room_2_type }}</option>
+                                    @else
+                                        <option value="0" selected></option>
+                                    @endif
                                     <option value="standard">Standard</option>
                                     <option value="deluxe">Deluxe</option>
                                     <option value="suite">Suite</option>
@@ -137,15 +147,11 @@
                         </div>
                         <div class="item">
                             <label for="special_instructions">Special Instructions</label>
-                            <textarea id="special_instructions" name="special_instructions" rows="3" required></textarea>
+                            <textarea id="special_instructions" name="special_instructions" rows="3" disabled>{{  $reservation->special_instructions }}</textarea>
                         </div>
                     </fieldset>
-                    <div class="btn-block">
-                        <button class="submit_button" type="submit" href="/">Submit</button>
-                    </div>
                 </form>
             </div>
         </div>
     </div>
-
 </x-app-layout>

@@ -25,8 +25,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::post('/', [ReservationController::class, 'store'])->name('reservation.store');
+    Route::get('/reservation/{reservation}', [ReservationController::class, 'show'])->name('reservation.show');
+    Route::get('/reservation/{reservation}/edit', [ReservationController::class, 'edit'])->name('reservation.edit');
+    Route::put('/reservation/{reservation}', [ReservationController::class, 'update'])->name('reservation.update');
+    Route::delete('/reservation/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.delete');
 });
 
-Route::post('/', [ReservationController::class, 'store'])->name('reservation.store');
 
 require __DIR__.'/auth.php';

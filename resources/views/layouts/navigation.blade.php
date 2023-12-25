@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
-                    <a href="{{ route('welcome') }}">
+                    <a href="/">
                         Laravel Hotel Booking
                     </a>
                 </div>

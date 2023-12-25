@@ -33,22 +33,27 @@
                                         <td class="px-4 py-2 text-gray-700 whitespace-nowrap">{{ $reservation->checkin_date }}</td>
                                         <td class="px-4 py-2 text-gray-700 whitespace-nowrap">{{ $reservation->checkin_time }}</td>
                                         <td class="px-4 py-2 whitespace-nowrap">
-                                            <a href="#"
+                                            <a href="{{ route("reservation.show", $reservation) }}"
                                                 class="inline-block px-4 py-2 text-xs font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700">
                                                 View
                                             </a>
                                         </td>
                                         <td class="px-4 py-2 whitespace-nowrap">
-                                            <a href="#"
+                                            <a href="{{ route("reservation.edit", $reservation) }}"
                                                 class="inline-block px-4 py-2 text-xs font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700">
                                                 Edit
                                             </a>
                                         </td>
                                         <td class="px-4 py-2 whitespace-nowrap">
-                                            <a href="#"
-                                                class="inline-block px-4 py-2 text-xs font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700">
-                                                Delete
-                                            </a>
+                                            <form onclick="return confirm('Are you sure?')"
+                                            action="{{ route('reservation.delete', $reservation) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                                <button type="submit"
+                                                    class="inline-block px-4 py-2 text-xs font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700">
+                                                    Delete
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

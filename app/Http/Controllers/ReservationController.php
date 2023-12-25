@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Gate;
 
 class ReservationController extends Controller
 {
@@ -82,6 +82,9 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
+        if (!Gate::any('update-reservation', $reservation)) {
+            abort(403);
+        }
         return view("reservations.reservation-edit", ['reservation' => $reservation]);
     }
 
@@ -90,6 +93,10 @@ class ReservationController extends Controller
      */
     public function update(Request $request, Reservation $reservation)
     {
+        if (!Gate::any('update-reservation', $reservation)) {
+            abort(403);
+        }
+
         $validatedData = $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -140,6 +147,9 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
+        if (!Gate::allows('delete-reservation', $reservation)) {
+            abort(403);
+        }
         $reservation->delete();
         return redirect()->route('dashboard')->with('message', 'reservation successfully deleted!');
     }

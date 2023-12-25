@@ -13,7 +13,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservations = Reservation::paginate(10)->withQueryString();
+        return view('dashboard', compact('reservations'));
     }
 
     /**
@@ -40,7 +41,7 @@ class ReservationController extends Controller
             'phone' => 'required',
             'checkin_date' => 'required',
             'checkout_date' => 'required',
-            // 'checkin_time' => 'required',
+            'checkin_time' => 'required',
             'checkout_time' => 'required',
             'numberof_adults' => 'required',
             'numberof_children' => 'required',
@@ -72,7 +73,7 @@ class ReservationController extends Controller
             $reservation->room_2_type = $request->room_2_type;
             $reservation->special_instructions = $request->special_instructions;
             $reservation->save();
-            return redirect()->route('welcome')->with('message', 'reservation successfully created!');
+            return redirect()->route('welcome')->with('message', 'reservation successfully booked!');
         }
     }
 

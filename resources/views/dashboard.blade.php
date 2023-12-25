@@ -17,37 +17,41 @@
                                     <th class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">Phone</th>
                                     <th class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">Number-of-Rooms</th>
                                     <th class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">Check-In-Date</th>
-                                    <th class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">Check-Out-Date</th>
+                                    <th class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">Check-In-Time</th>
                                     <th class="px-4 py-2"></th>
                                 </tr>
                             </thead>
 
                             <tbody class="divide-y divide-gray-200">
-                                <tr>
-                                    <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">John Doe</td>
-                                    <td class="px-4 py-2 text-gray-900 whitespace-nowrap">0977777777</td>
-                                    <td class="px-4 py-2 text-gray-700 whitespace-nowrap">2</td>
-                                    <td class="px-4 py-2 text-gray-700 whitespace-nowrap">24/05/1995</td>
-                                    <td class="px-4 py-2 text-gray-700 whitespace-nowrap">28/05/1995</td>
-                                    <td class="px-4 py-2 whitespace-nowrap">
-                                        <a href="#"
-                                            class="inline-block px-4 py-2 text-xs font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700">
-                                            View
-                                        </a>
-                                    </td>
-                                    <td class="px-4 py-2 whitespace-nowrap">
-                                        <a href="#"
-                                            class="inline-block px-4 py-2 text-xs font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700">
-                                            Edit
-                                        </a>
-                                    </td>
-                                    <td class="px-4 py-2 whitespace-nowrap">
-                                        <a href="#"
-                                            class="inline-block px-4 py-2 text-xs font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700">
-                                            Delete
-                                        </a>
-                                    </td>
-                                </tr>
+                                @foreach ($reservations as $reservation)
+                                    <tr>
+                                        <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">
+                                            {{ $reservation->first_name }} {{ $reservation->last_name }}
+                                        </td>
+                                        <td class="px-4 py-2 text-gray-900 whitespace-nowrap">{{ $reservation->phone }}</td>
+                                        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">{{ $reservation->numberof_rooms }}</td>
+                                        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">{{ $reservation->checkin_date }}</td>
+                                        <td class="px-4 py-2 text-gray-700 whitespace-nowrap">{{ $reservation->checkin_time }}</td>
+                                        <td class="px-4 py-2 whitespace-nowrap">
+                                            <a href="#"
+                                                class="inline-block px-4 py-2 text-xs font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700">
+                                                View
+                                            </a>
+                                        </td>
+                                        <td class="px-4 py-2 whitespace-nowrap">
+                                            <a href="#"
+                                                class="inline-block px-4 py-2 text-xs font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700">
+                                                Edit
+                                            </a>
+                                        </td>
+                                        <td class="px-4 py-2 whitespace-nowrap">
+                                            <a href="#"
+                                                class="inline-block px-4 py-2 text-xs font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700">
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
